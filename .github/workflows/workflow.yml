@@ -1,0 +1,40 @@
+name: GitHub Actions Workflow
+
+on:
+  push:
+    branches:
+      - main
+      - feature/github-actions-test
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  first-job:
+    name: Run first GitHub Actions job
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Print basic information
+        run: |
+          echo "Hello from GitHub Actions"
+          echo "Repository: ${{ github.repository }}"
+          echo "Branch: ${{ github.ref }}"
+          echo "Triggered by: ${{ github.actor }}"
+          echo "Runner OS: ${{ runner.os }}"
+
+      - name: List repository files
+        run: |
+          pwd
+          ls -la
+          lsb_release -a
+
+      - name: Run a simple validation
+        run: |
+          echo "Checking if README.md exists..."
+          test -f README.md
+          echo "README.md exists."
