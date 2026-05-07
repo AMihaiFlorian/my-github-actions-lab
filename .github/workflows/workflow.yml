@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - feature/first-github-action
+      - feature/github-actions-test
   pull_request:
     branches:
       - main
